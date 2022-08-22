@@ -11,7 +11,7 @@
 // 我的思路是在 VNode创建的时候就把该VNode的类型通过flags标明
 // 枚举值 VNodeFlags
 // 将VNode的种类 设计为一个对象 flags值采用位运算方式
-const VNodeFlags = {
+export const VNodeFlags = {
   // html标签
   ELEMENT_HTML: 1, //0000 0000 0001 1
   // svg图片 
