@@ -11,7 +11,7 @@
 // 我的思路是在 VNode创建的时候就把该VNode的类型通过flags标明
 // 枚举值 VNodeFlags
 // 将VNode的种类 设计为一个对象 flags值采用位运算方式
-export const VNodeFlags = {
+ const VNodeFlags = {
   // html标签
   ELEMENT_HTML: 1, //0000 0000 0001 1
   // svg图片 
@@ -55,5 +55,9 @@ const VNode3 = {
 const VNode4 = {
   flags: VNodeFlags.PORTAL,
   // 注意，由于 flags 的存在，我们已经不需要使用 tag 属性来存储唯一标识，tag 属性用来存储 Portal 的 target
-  tag: target
+  tag: null
+}
+
+export default {
+  VNodeFlags
 }

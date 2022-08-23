@@ -1,5 +1,4 @@
 // VNode属性 children childrenFlags
-import { VNodeFlags } from './VNodeAndFlags';
 
 // 一个标签的字节点情况
 /** 
@@ -9,9 +8,8 @@ import { VNodeFlags } from './VNodeAndFlags';
  * 4. 多个字节点
  * 5. 多个字节点:（1）有key的字节点（2）无key的字节点
  **/
-const {
-  VNodeFlags
-} = requried('./VNodeAndFlags.js')
+import flags from './VNodeAndFlags.js';
+const VNodeFlags = flags.VNodeFlags
 // childrenFlags设计 与flags大致相同 也用位来表示
 const ChildrenFlags = {
   // 未知的字节点
@@ -60,7 +58,7 @@ const VNode3 = {
       },
       flags: VNodeFlags.ELEMENT_HTML,
       children: null,
-      childrenFlags: NO_CHILDREN
+      childrenFlags: ChildrenFlags.NO_CHILDREN
     },
     {
       tag: 'li',
@@ -69,7 +67,7 @@ const VNode3 = {
       },
       flags: VNodeFlags.ELEMENT_HTML,
       children: null,
-      childrenFlags: NO_CHILDREN
+      childrenFlags: ChildrenFlags.NO_CHILDREN
     }
   ],
   childrenFlags: ChildrenFlags.KEYED_VNODES
@@ -87,4 +85,8 @@ const VNode4 = {
   },
   childrenFlags: ChildrenFlags.SINGLE_VNODE
 
+}
+
+export default {
+  ChildrenFlags
 }
