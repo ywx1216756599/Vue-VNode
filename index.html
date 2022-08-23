@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <div id="#app"></div>
+  <script type="module">
+    import { h, Fragment, Portal } from './hFunc/index.js'
+    const elementVNode = h('div', null, h('span'))
+    const elementText = h('div', null, '我是文本')
+    const elementVNodeFragment = h(Fragment, null, null)
+    const elementVNodePortal = h(Portal, {target: '#app'}, null)
+    console.log(elementVNode)
+    console.log(elementText)
+    console.log(elementVNodeFragment)
+    console.log(elementVNodePortal)
+  </script>
 </body>
+
 </html>
