@@ -6,20 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    
+  </style>
 </head>
 
 <body>
-  <div id="#app"></div>
+  <div id="app"></div>
   <script type="module">
-    import { h, Fragment, Portal } from './hFunc/index.js'
-    const elementVNode = h('div', null, h('span'))
-    const elementText = h('div', null, '我是文本')
-    const elementVNodeFragment = h(Fragment, null, null)
-    const elementVNodePortal = h(Portal, {target: '#app'}, null)
-    console.log(elementVNode)
-    console.log(elementText)
-    console.log(elementVNodeFragment)
-    console.log(elementVNodePortal)
+    import { h } from './hFunc/index.js'
+    import render from './render/index.js'
+    const elementVnode = h ('div', {
+      style: {
+        width: '100px',
+        height: '100px',
+        // backgroundColor: 'red'
+      },
+      class: 'box1'
+    }, [
+      h('div', {
+        style: {
+          width: '50px',
+          height: '50px',
+          backgroundColor: 'green',
+        },
+        class: [
+          'class-1',
+          {
+            'class-2': true,
+            'class-3': false,
+          }
+        ]
+      }, null),
+      h('input', {
+        type: 'checkbox',
+        checked: true,
+        aaa: '12'
+      }, null)
+    ])
+    render(elementVnode, document.getElementById('app'))
   </script>
 </body>
 
