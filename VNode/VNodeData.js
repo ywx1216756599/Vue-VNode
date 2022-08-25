@@ -8,5 +8,5 @@ export const VNode =  {
   tag: string | FunctionalComponent | ComponentClass | null,
   data: VNodeData | null,
   children: VNodeChildren,
-  childFlags: ChildrenFlags,
+  ChildrenFlags: ChildrenFlags,
 }

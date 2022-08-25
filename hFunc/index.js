@@ -2,7 +2,8 @@ import flags from '../VNode/VNodeAndFlags.js';
 import childrenFlags from '../VNode/VNodeAndChildrenFlags.js';
 
 const VNodeFlags = flags.VNodeFlags
-const ChildrenFlags = childrenFlags.ChildrenFlags
+const ChildFlags = childrenFlags.ChildrenFlags
+console.log(ChildFlags.NO_KEYED_VNODES)
 
 // 简单的h函数模型
 function hDemo() {
@@ -13,7 +14,7 @@ function hDemo() {
     tag: '',
     data: '',
     children: '',
-    childFlags: '',
+    ChildrenFlags: '',
   }
 }
 
@@ -48,35 +49,35 @@ export function h(tag, data = null, children = null) {
   }
   // 设置每个VNode的childrenFlags
   // children的四种情况 1. 是一个数组 2. 是一个VNodeData 3. 没有 4. 文本
-  let childFlags = null
+  let ChildrenFlags = null
   if (children instanceof Array) {
     if (children.length === 0) {
       // 无子节点
-      childFlags = ChildrenFlags.NO_CHILDREN
+      ChildrenFlags = ChildFlags.NO_CHILDREN
     } else if (children.length === 1) {
       // 一个子节点
-      childFlags = ChildrenFlags.SINGLE_VNODE
+      ChildrenFlags = ChildFlags.SINGLE_VNODE
     } else {
       // 多个子节点
       const keys = children.map(i => i.key).filter(Boolean)
       if (keys.length) {
         // 有key
-        childrenFlags = ChildrenFlags.KEYED_VNODES
+        ChildrenFlags = ChildFlags.KEYED_VNODES
       } else {
         // 无key
-        childrenFlags = ChildrenFlags.NO_KEYED_VNODES
+        ChildrenFlags = ChildFlags.NO_KEYED_VNODES
       }
       children = setChildrenVNodes(children)
     }
     // 无子节点
   } else if (!children) {
-    childFlags = ChildrenFlags.NO_CHILDREN
+    ChildrenFlags = ChildFlags.NO_CHILDREN
     // 一个字节点 children为对象时
   } else if (children._isVNode) {
-    childFlags = ChildrenFlags.SINGLE_VNODE
+    ChildrenFlags = ChildFlags.SINGLE_VNODE
   } else {
     // 文本节点
-    childFlags = ChildrenFlags.SINGLE_VNODE
+    ChildrenFlags = ChildFlags.SINGLE_VNODE
     children = setTextVNode(String(children))
   }
   const VNodeData = {
@@ -84,7 +85,7 @@ export function h(tag, data = null, children = null) {
     flags,
     _isVNode: true,
     el: null,
-    childFlags
+    ChildrenFlags
   }
   VNodeData.data = data
   VNodeData.children = children
@@ -112,6 +113,6 @@ function setTextVNode(children) {
     tag: null,
     data: null,
     children,
-    childFlags: ChildrenFlags.NO_CHILDREN,
+    ChildrenFlags: ChildFlags.NO_CHILDREN,
   }
 }

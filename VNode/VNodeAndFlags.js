@@ -57,7 +57,7 @@ const VNode4 = {
   // 注意，由于 flags 的存在，我们已经不需要使用 tag 属性来存储唯一标识，tag 属性用来存储 Portal 的 target
   tag: null
 }
-
+VNodeFlags.ELEMENT = VNodeFlags.ELEMENT_HTML | VNodeFlags.ELEMENT_SVG
 export default {
   VNodeFlags
 }
